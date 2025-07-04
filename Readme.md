@@ -1,25 +1,25 @@
 # XAMPP MySQL Restore
 
-A one-click solution to rebuild your MySQL `data` folder from a backup—no manual copying required.
-
 ## Prerequisites
 
 * Windows machine with XAMPP installed.
-* A `backup` folder located in `C:\xampp\mysql\backup` containing a copy of your previous `data` files, **excluding** `ibdata1`.
 * Ensure both Apache and MySQL services are **stopped** before running the script.
+* The script must be Run as Administrator
 
-## Files
+## Download Files
 
 * `solve-xampp.bat`
 
   * The batch script that automates the restore steps.
 
-## Usage
+## Processes
 
 1. **Stop Services**
-   Open XAMPP Control Panel and click **Stop** for both **Apache** and **MySQL**.
+   Open XAMPP Control Panel and click **Stop** for both **Apache** and **MySQL**, If on Apache and MySQL Services.
 
 2. **Locate MySQL Directory**
+   Go to xampp installation folder
+   Then go to 'mysql' folder
    By default:
 
    ```
@@ -39,10 +39,11 @@ A one-click solution to rebuild your MySQL `data` folder from a backup—no manu
    When you see **Restore complete!**, press any key to close the window.
 
 6. **Cleanup**
-   Delete `solve-xampp.bat` from `C:\xampp\mysql` if no longer needed.
+   Delete `solve-xampp.bat` if no longer needed.
 
 7. **Restart Services**
    In XAMPP Control Panel, click **Start** for **MySQL** and **Apache**.
+
 
 ## What the Script Does
 
@@ -51,6 +52,7 @@ A one-click solution to rebuild your MySQL `data` folder from a backup—no manu
 * Copies everything from `backup\` → `data\` (skips `ibdata1`)
 * Merges files from `data_old` → `data` without overwriting existing ones
 * Deletes `data_old` once merging is complete
+
 
 ## Troubleshooting
 
@@ -67,13 +69,8 @@ A one-click solution to rebuild your MySQL `data` folder from a backup—no manu
 
   * Manually copy a valid `ibdata1` from your archive into `C:\xampp\mysql\data`.
 
-## Tips
-
-* Create a desktop shortcut to `solve-xampp.bat` with **Run as administrator** enabled for one-click access.
-* Keep a separate archive of `ibdata1` for long-term storage.
-
 ---
 
 
-**Author:** \Dorjoy Das
-**Date:** 3 July 2025
+* **Author:** Dorjoy Das
+* **Date:** 3 July 2025
