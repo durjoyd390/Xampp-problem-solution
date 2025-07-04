@@ -1,30 +1,143 @@
 @echo off
-REM — Ensure we’re in the folder where this script lives
+setlocal EnableDelayedExpansion
 pushd "%~dp0"
 
-REM — Step 4: Rename “data” → “data_old”
 if exist data_old (
-    echo Removing existing data_old folder…
     rd /s /q data_old
 )
-echo Renaming data → data_old…
+
+set "BAR_WIDTH=50"
+set "STEP=5"
+set "SLEEP_MS=80"
+
+for /L %%P in (5,%STEP%,100) do (
+    set /A filled = %%P * BAR_WIDTH / 100
+    set "fill="
+    for /L %%F in (1,1,!filled!) do set "fill=!fill!->"
+
+    set /A empty = BAR_WIDTH - filled
+    set "space="
+    for /L %%S in (1,1,!empty!) do set "space=!space! "
+
+    cls
+    echo Xampp MySQL Problem Solution
+    echo Made By Mr DD
+    echo Github: https://github.com/durjoyd390
+    echo ==============================================
+    echo.
+    echo.
+    echo Step 1: Renaming data to data_old %%P%%
+    echo [!fill!!space!]
+    echo.
+    echo Note: Do not close the window! If you do, you may lose your databases.
+
+    powershell -Command "Start-Sleep -Milliseconds %SLEEP_MS%"
+)
 ren data data_old
 
-REM — Step 5: Create new “data” and copy from “backup” (excluding ibdata1)
-echo Creating new data folder…
+
+set "BAR_WIDTH=50"
+set "STEP=5"
+set "SLEEP_MS=80"
+
+for /L %%P in (5,%STEP%,100) do (
+    set /A filled = %%P * BAR_WIDTH / 100
+    set "fill="
+    for /L %%F in (1,1,!filled!) do set "fill=!fill!->"
+
+    set /A empty = BAR_WIDTH - filled
+    set "space="
+    for /L %%S in (1,1,!empty!) do set "space=!space! "
+
+    cls
+    echo Xampp MySQL Problem Solution
+    echo Made By Mr DD
+    echo Github: https://github.com/durjoyd390
+    echo ==============================================
+    echo.
+    echo.
+    echo Step 2: Creating new data folder %%P%%
+    echo [!fill!!space!]
+    echo.
+    echo Note: Do not close the window! If you do, you may lose your databases.
+
+    powershell -Command "Start-Sleep -Milliseconds %SLEEP_MS%"
+)
 mkdir data
-echo Copying from backup → data (skipping ibdata1) …
+
+
+set "BAR_WIDTH=50"
+set "STEP=5"
+set "SLEEP_MS=80"
+
+for /L %%P in (5,%STEP%,100) do (
+    set /A filled = %%P * BAR_WIDTH / 100
+    set "fill="
+    for /L %%F in (1,1,!filled!) do set "fill=!fill!->"
+
+    set /A empty = BAR_WIDTH - filled
+    set "space="
+    for /L %%S in (1,1,!empty!) do set "space=!space! "
+
+    cls
+    echo Xampp MySQL Problem Solution
+    echo Made By Mr DD
+    echo Github: https://github.com/durjoyd390
+    echo ==============================================
+    echo.
+    echo.
+    echo Step 3: Copying from backup to data [skipping ibdata1] %%P%%
+    echo [!fill!!space!]
+    echo.
+    echo Note: Do not close the window! If you do, you may lose your databases.
+
+    powershell -Command "Start-Sleep -Milliseconds %SLEEP_MS%"
+)
+
 robocopy backup data /E /COPYALL /XF ibdata1
 
-REM — Step 6: Merge files from data_old → data without overwriting
 echo Merging legacy files…
 robocopy data_old data /E /COPYALL /XC /XN /XO
 
-REM — Step 7: Delete the old folder
-echo Deleting data_old…
+
+set "BAR_WIDTH=50"
+set "STEP=5"
+set "SLEEP_MS=80"
+
+for /L %%P in (5,%STEP%,100) do (
+    set /A filled = %%P * BAR_WIDTH / 100
+    set "fill="
+    for /L %%F in (1,1,!filled!) do set "fill=!fill!->"
+
+    set /A empty = BAR_WIDTH - filled
+    set "space="
+    for /L %%S in (1,1,!empty!) do set "space=!space! "
+
+    cls
+    echo Xampp MySQL Problem Solution
+    echo Made By Mr DD
+    echo Github: https://github.com/durjoyd390
+    echo ==============================================
+    echo.
+    echo.
+    echo Step 4: Deleting data_old %%P%%
+    echo [!fill!!space!]
+    echo.
+    echo Note: Do not close the window! If you do, you may lose your databases.
+
+    powershell -Command "Start-Sleep -Milliseconds %SLEEP_MS%"
+)
 rd /s /q data_old
 
+cls
+
 popd
+echo.
+echo Xampp MySQL Problem Solution
+echo Made By Mr DD
+echo Github: https://github.com/durjoyd390
+echo ==============================================
+echo.
 echo.
 echo ===== Restore complete! =====
 pause
